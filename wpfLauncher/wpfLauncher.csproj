@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\dummy.png" />
     <None Remove="assets\nanohana909201.wmv" />
     <None Remove="assets\partially-cloudy.png" />
+    <None Remove="assets\pathList.csv" />
+    <None Remove="assets\preview.mp4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +25,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="assets\nanohana909201.wmv">
+    <Content Include="assets\dummy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\pathList.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\preview.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

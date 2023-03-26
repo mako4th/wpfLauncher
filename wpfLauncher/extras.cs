@@ -9,11 +9,27 @@ using System.Windows.Interop;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.WindowsAPICodePack.Shell;
 
 namespace wpfLauncher
 {
     class extras
     {
+        public ImageSource getImageSourceFromAPP(string path)
+        {
+            ImageSource result = GetImageFromAssets("notFound.jpg");
+            if (File.Exists(path))
+            {
+                using (var file = ShellFile.FromFilePath(path))
+                {
+                    file.Thumbnail.FormatOption = ShellThumbnailFormatOption.IconOnly;
+                    result = file.Thumbnail.BitmapSource;
+                }
+            }
+
+            return result;
+        }
+
         public ImageSource getImageSourceFromUri(string uriString)
         {
             BitmapImage bitmapImage = new BitmapImage();
@@ -36,7 +52,6 @@ namespace wpfLauncher
                 bpim.CreateOptions = BitmapCreateOptions.None;
                 bpim.EndInit();
                 bpim.Freeze();
-
             }
             return bpim;
         }
@@ -115,6 +130,27 @@ namespace wpfLauncher
                 return path;
             }
 
+        }
+
+        public List<string> lineLoad(string path)
+        {
+            List<string> result = new List<string>();
+            using(StreamReader sr = new StreamReader(path))
+            {
+                while(sr.Peek() != -1)
+                {
+                    string line = sr.ReadLine();
+                    if (line == null)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        result.Add(line);
+                    }
+                }
+            }
+            return result;
         }
 
         /*
