@@ -26,7 +26,6 @@ namespace wpfLauncher
 
         public mainGrid()
         {
-            AllowDrop = true;
             mediaElement = new MediaElement();
             extras ex = new extras();
             Background = Brushes.Navy;
@@ -176,18 +175,18 @@ namespace wpfLauncher
         }
         public void OnDrop(object sender, DragEventArgs e)
         {
-            var filenames = (string[])e.Data.GetData(DataFormats.FileDrop);
-            if(filenames == null)
-            {
-                return;
-            }
-            if (filenames.Count() > 1)
-            {
-                MessageBox.Show("ファイルは一つだけ選択してください。");
-            }
             extras ex = new extras();
 
-            string filepath = ex.getOriginPath(filenames[0]);
+            e.Handled= true;
+            string? filename = ex.IsSingleFile(e);
+
+            if(filename == null)
+            {
+                //MessageBox.Show("ファイルは一つだけ選択してください。");
+                return;
+            }
+
+            string filepath = ex.getOriginPath(filename);
 
             if (File.Exists(filepath))
             {

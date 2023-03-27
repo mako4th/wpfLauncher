@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -22,7 +23,16 @@ namespace wpfLauncher
         public Window1()
         {
             InitializeComponent();
-            AddChild(new mainGrid());
+            
+            TabControl tabs = new TabControl();//タブコントロール全体
+            TabItem item = new TabItem();//タブのページ自体
+            item.Name = "label1";
+            item.Header = "labaaaaaaaaaael1";//タブのタイトル
+            item.Content = new mainGrid();//タブページのコンテンツ
+            tabs.Items.Add(item);//ページ追加
+
+
+            AddChild(tabs);
         }
     }
 }

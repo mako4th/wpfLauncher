@@ -15,6 +15,21 @@ namespace wpfLauncher
 {
     class extras
     {
+        public string IsSingleFile(DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
+            {
+                string[] filenames = e.Data.GetData(DataFormats.FileDrop,true) as string[];
+                if(filenames?.Length is 1)
+                {
+                    if (File.Exists(filenames[0]))
+                    {
+                        return filenames[0];
+                    }
+                }
+            }
+            return null;
+        }
         public ImageSource getImageSourceFromAPP(string path)
         {
             ImageSource result = GetImageFromAssets("notFound.jpg");
