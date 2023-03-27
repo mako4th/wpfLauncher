@@ -140,7 +140,7 @@ namespace wpfLauncher
             mediaElement.Position = TimeSpan.Zero;
             mediaElement.Play();
         }
-        private void imageMouseUp(object sender, MouseButtonEventArgs e)
+        private async void imageMouseUp(object sender, MouseButtonEventArgs e)
         {
             if (sender is exImage)
             {
@@ -152,7 +152,9 @@ namespace wpfLauncher
                 {
                     ProcessStartInfo pi = new ProcessStartInfo();
                     pi.FileName = im.appPath;
+                    pi.UseShellExecute = true;
                     // pi.Arguments = linkPropaty.Arguments;
+                    
                     try
                     {
                         Process.Start(pi);
@@ -175,6 +177,10 @@ namespace wpfLauncher
         public void OnDrop(object sender, DragEventArgs e)
         {
             var filenames = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if(filenames == null)
+            {
+                return;
+            }
             if (filenames.Count() > 1)
             {
                 MessageBox.Show("ファイルは一つだけ選択してください。");
