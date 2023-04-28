@@ -23,16 +23,19 @@ namespace wpfLauncher
         public Window1()
         {
             InitializeComponent();
-            
-            TabControl tabs = new TabControl();//タブコントロール全体
-            TabItem item = new TabItem();//タブのページ自体
-            item.Name = "label1";
-            item.Header = "labaaaaaaaaaael1";//タブのタイトル
-            item.Content = new mainGrid();//タブページのコンテンツ
+
+            this.MouseLeftButtonDown += (sender, e) => { this.DragMove(); };
+
+
+            /* TabControl tabs = new TabControl();//タブコントロール全体
+             TabItem item = new TabItem();//タブのページ自体
+             item.Name = "label1";
+             item.Header = "labaaaaaaaaaael1";//タブのタイトル
+             item.Content = new mainGrid();//タブページのコンテンツ
             tabs.Items.Add(item);//ページ追加
+             */
 
-
-            AddChild(tabs);
+           // AddChild(tabs);
         }
     }
 }

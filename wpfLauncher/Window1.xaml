@@ -6,5 +6,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpfLauncher"
         mc:Ignorable="d"
-        Title="Launcher" Height="800" Width="800">
+        Title="Launcher" Height="848" Width="1106"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="CanResizeWithGrip"
+        >
+    <StackPanel>
+        <Button Content="Button"/>
+        <Image Height="100" Width="100"/>
+    </StackPanel>
 </Window>
